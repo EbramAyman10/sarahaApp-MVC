@@ -9,6 +9,7 @@ import messagesRouter from "./src/modules/message/message.routes.js";
 import userRouter from "./src/modules/user/user.routes.js";
 import session from "express-session";
 import cors from "cors";
+import path from "path";
 import mongostore from "connect-mongodb-session";
 let mongoDBStore = mongostore(session);
 
@@ -31,7 +32,7 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static(path.join(path.resolve(), "public")));
 
 app.use(homeRouter);
 app.use(loginRouter);
