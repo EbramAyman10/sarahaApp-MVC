@@ -1,8 +1,17 @@
-import mongoose from "mongoose";
 
-export const dbConnection = mongoose
-  .connect("mongodb://localhost:27017/saraha-mvc")
-  .then(() => console.log("db connected"))
-  .catch((err) => {
-    console.log(err);
-  });
+  import mongoose from "mongoose";
+  
+  export const dbConnection = async () => {
+    try {
+      console.log("Trying to connect to MongoDB...");
+  
+      await mongoose.connect("mongodb://localhost:27017/saraha-mvc");
+  
+      console.log("MongoDB connected successfully");
+    } catch (error) {
+      console.error("MongoDB connection failed:");
+      console.error(error);
+      throw error;
+    }
+  };
+  
