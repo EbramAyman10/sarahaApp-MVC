@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import { globalError } from "./src/middleware/globalError.js";
 import homeRouter from "./src/modules/home/home.routes.js";
@@ -17,7 +18,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 let store = new mongoDBStore({
-  uri: "mongodb://127.0.0.1:27017/saraha-mvc",
+  uri: process.env.MONGO_URL,
   collection: "mySessions",
 });
 await dbConnection();
